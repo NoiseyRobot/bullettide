@@ -40,6 +40,9 @@ class Button:
         text = self.font.render(self.text, True, self.text_color)
         screen.blit(text, text.get_rect(center=self.rect.center))
 
+    def clicked(self, event):
+        return event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and self.rect.collidepoint(event.pos)
+
 
 class Game:
     def __init__(self):
@@ -88,6 +91,7 @@ def titlemain(screen, font):
 screen = pygame.display.set_mode((game.SCREEN_WIDTH, game.SCREEN_HEIGHT))
 pygame.display.set_caption("Bullet Tide")
 
+titlesetup(game.bigfont)
 running = True
 while running:
     for event in pygame.event.get():
@@ -97,9 +101,12 @@ while running:
     screen.fill((0, 0, 0))
 
     if game.game_state == "title":
-        titlesetup(game.bigfont)
         titlemain(screen, game.bigfont)
+        if play_button.clicked(event):
+            game.game_state = "playing"
 
+    if game.game_state == "playing":
+        print()
     pygame.display.flip()
 
 pygame.quit()
