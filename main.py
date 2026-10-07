@@ -1,6 +1,6 @@
 import pygame
 from pathlib import Path
-from code.titlescreen import drawtitle
+import code.titlescreen as titlescreen
 pygame.init()
 
 
@@ -29,6 +29,7 @@ while running:
             running = False
     screen.fill((0, 0, 0))
     if game.game_state == "title":
-        drawtitle(screen, game.bigfont)
+        titlescreen.setup(game.bigfont)
+        titlescreen.main(screen, game.bigfont)
     pygame.display.flip()
 pygame.quit()
