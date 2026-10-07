@@ -2,7 +2,10 @@ import pygame
 from code.window import window
 pygame.init()
 
-screen = pygame.display.set_mode((720, 480))
+width = 720
+height = 480
+
+screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Bullet Tide")
 
 running = True
@@ -11,6 +14,6 @@ while running:
         if event.type == pygame.QUIT:
             running = False
     screen.fill((0, 0, 0))
-    window()
+    window(width, height)
     pygame.display.flip()
 pygame.quit()
